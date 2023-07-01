@@ -1,0 +1,1 @@
+DNS_CONFIG_PATH = '../scripts/DNS/'
