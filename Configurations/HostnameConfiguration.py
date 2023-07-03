@@ -1,16 +1,16 @@
 import os
 
 class HostnameConfiguratoin:
-    def __init__(self, hostname):
+    def __init__(self):
         self.PATH_CONFIG = '../scripts/Hostname/'
         self.hostname = hostname
 
 
-    def changeHostname_temporary(self):
-        os.system(f'bash {self.PATH_CONFIG}temporary/set.sh {self.hostname}')
+    def changeHostname_temporary(self, hostname):
+        os.system(f'bash {self.PATH_CONFIG}temporary/set.sh {hostname}')
 
-    def changeHostname_permanently(self):
-        os.system(f'bash {self.PATH_CONFIG}permanently/set.sh {self.hostname}')
+    def changeHostname_permanently(self, hostname):
+        os.system(f'bash {self.PATH_CONFIG}permanently/set.sh {hostname}')
     
     def restore_permanently(self):
         os.system(f'bash {self.PATH_CONFIG}permanently/restore.sh')
@@ -19,8 +19,9 @@ class HostnameConfiguratoin:
         os.system(f'bash {self.PATH_CONFIG}restart.sh')
 
 if __name__=='__main__':
-    host = HostnameConfiguratoin('mohammad')
+    hostname = 'mohammad'
+    # host = HostnameConfiguratoin()
     # host.changeHostname_temporary()
     # host.changeHostname_permanently()
-    host.restore_permanently()
+    # host.restore_permanently()
     # host.restart()
