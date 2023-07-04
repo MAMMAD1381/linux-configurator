@@ -1,40 +1,43 @@
+import os
+
 class Table:
 
-    
-
-    name: str
-    family_type: str
-    chains = {}
-    chain_types = ['filter', 'route','nat']
-    filter_type_supported_by = ['ip', 'ip6', 'inet', 'arp', 'bridge']
-    nat_type_supported_by = ['ip', 'ip6', 'inet']
-    route_type_supported_by = ['ip', 'ip6']
-    ipv4_hook_types = ['prerouting', 'input', 'forward', 'output', 'postrouting', 'egress']
-    ipv6_hook_types = ipv4_hook_types
-    inet_hook_types = ipv4_hook_types
-    arp_hook_types = ['input', 'output']
-    bridge_hoo_types = ipv4_hook_types
-    netdev_hook_types = ['ingress', 'egress']
-    
+    PATH_CONFIG = '../../scripts/nft/Table/'
+    family_types = ['ip', 'ip6', 'inet', 'arp', 'bridge']
 
     def __init__(self):
-        pass
+        os.system(f'bash {self.PATH_CONFIG}../dependencies.sh nftables')
 
-    def add_chain(self):
-        pass
+    def add_table(self, family_type, name):
+        if name and family_type in self.family_types:
+            os.system(f'bash {self.PATH_CONFIG}add.sh {family_type} {name}')
+        else:
+            print('an ERROR occured pls enter the right arguments')
 
-    def delete_chain(self):
-        pass
+    def delete_table(self, family_type, name):
+        if name and family_type in self.family_types:
+            os.system(f'bash {self.PATH_CONFIG}delete.sh {family_type} {name}')
+        else: print('an ERROR occured pls enter the right arguments')
+        
 
-    def rename_chain(self):
-        pass
+    def list_table(self, family_type, name):
+        if name and family_type in self.family_types:
+            os.system(f'bash {self.PATH_CONFIG}list.sh {family_type} {name}')
+        else: os.system(f'bash {self.PATH_CONFIG}list.sh')
 
-    def list_chain(self):
-        pass
 
-    def list_chains(self):
-        pass
+    def flush_table(self, family_type, name):
+        if name and family_type in self.family_types:
+            os.system(f'bash {self.PATH_CONFIG}flush.sh {family_type} {name}')
+        else:
+            print('an ERROR occured pls enter the right arguments')
 
-    def flush_chain(self):
-        pass
-    
+if __name__=='__main__':
+    table_handler = Table()
+    # table_handler.add_table('my_tables', 'ip')
+    # table_handler.delete_table('my_tables', 'ip')
+    table_handler.flush_table('my_tables', 'ip')
+
+
+
+    table_handler.list_table('', '')
