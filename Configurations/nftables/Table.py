@@ -2,11 +2,44 @@ import os
 
 class Table:
 
-    PATH_CONFIG = '../../scripts/nft/Table/'
+    PATH_CONFIG = './scripts/nft/Table/'
     family_types = ['ip', 'ip6', 'inet', 'arp', 'bridge']
 
     def __init__(self):
-        os.system(f'bash {self.PATH_CONFIG}../dependencies.sh nftables')
+        # checking for dependencies
+        os.system(f'bash ./scripts/nft/dependencies.sh nftables')
+
+        while True:
+            selected_option = self.main_menu()
+
+            match selected_option:
+                
+                case '1':
+                    family_type = input('pls enter the family type: ')
+                    table_name = input('pls enter the table name: ')
+                    self.add_table(family_type, table_name)
+                
+                case '2':
+                    family_type = input('pls enter the family type: ')
+                    table_name = input('pls enter the table name: ')
+                    self.delete_table(family_type, table_name)
+                
+                case '3':
+                    family_type = input('pls enter the family type: ')
+                    table_name = input('pls enter the table name: ')
+                    self.list_table(family_type, table_name)
+                
+                case '4':
+                    self.list_table('', '')
+
+                case '5':
+                    family_type = input('pls enter the family type: ')
+                    table_name = input('pls enter the table name: ')
+                    self.flush_table(family_type, table_name)
+
+                case '6':
+                    break
+        
 
     def add_table(self, family_type, name):
         if name and family_type in self.family_types:
@@ -32,13 +65,15 @@ class Table:
         else:
             print('an ERROR occured pls enter the right arguments')
 
-if __name__=='__main__':
-    table_handler = Table()
-    table_handler.add_table('ip', 'my_tables')
-    # table_handler.delete_table('my_tables', 'ip')
-    # table_handler.flush_table('my_tables', 'ip')
-    table_handler.list_table('', '')
 
+    def main_menu(self):
 
+        print('pls select a section:')
+        print('1. add table')
+        print('2. delete table')
+        print('3. list table')
+        print('4. list tables')
+        print('5. flush table')
+        print('6. back')
 
-    table_handler.list_table('', '')
+        return input()

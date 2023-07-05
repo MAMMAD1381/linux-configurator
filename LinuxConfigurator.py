@@ -1,37 +1,44 @@
-from Configurations import DNSconfiguration
-from Configurations import HostnameConfiguration
-from Configurations import RootConfiguratoin
-from Configurations import IPconfiguration
+from Configurations.DNSconfiguration import DNSconfiguratoin
+from Configurations.HostnameConfiguration import HostnameConfiguratoin
+from Configurations.IPconfiguration import IPconfiguratoin
+from Configurations.RootConfiguratoin import RootConfiguratoin
+from Configurations.nftables.NFtableHandler import NftableHandler
 
 class LinuxConfigurator:
+
     def __init__(self):
+        
         while True:
+            selected_option = self.main_menu()
 
-            selected_section = self.main_menu()
-
-            match selected_section:
+            match selected_option:
+                
                 case '1':
-                    pass
-
+                    DNSconfiguratoin()
                 case '2':
-                    pass
-
+                    HostnameConfiguratoin()
                 case '3':
-                    pass
-
+                    IPconfiguratoin()
                 case '4':
-                    pass
+                    RootConfiguratoin()
+                case '5':
+                    NftableHandler()
+                case '6':
+                    exit(0)
 
-    
-    
     def main_menu(self):
-        print('''select a section to config:
-                 1. DNS:
-                 2. Hostname:
-                 3. Root:
-                 4. IP:''')
-        return input()
 
+        print('pls select an option to configure:')
+        print('1. DNS')
+        print('2. Hostname')
+        print('3 IP')
+        print('4 Root')
+        print('5 nftables')
+        print('6 quit')
+
+        return input()
 
 if __name__=='__main__':
     LinuxConfigurator()
+
+
