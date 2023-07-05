@@ -21,18 +21,28 @@ class Chain:
     def __init__(self):
         os.system(f'bash {self.PATH_CONFIG}../dependencies.sh nftables')
 
-    def add_chain(self, family_type, table_name, chain_name, chain_type, hook, priority):
-        os.system(f'bash {self.PATH_CONFIG}add.sh {family_type} {table_name} {chain_name} {chain_type} {hook} {priority}')
+    def add_chain(self, family_type, table_name, chain_name, chain_type, hook, priority, policy):
+        os.system(f'bash {self.PATH_CONFIG}add.sh {family_type} {table_name} {chain_name} {chain_type} {hook} {priority} {policy}')
 
-    def delete_chain(self):
-        pass
+    def delete_chain(self, family_type, table_name, chain_name):
+        os.system(f'bash {self.PATH_CONFIG}delete.sh {family_type} {table_name} {chain_name}')
 
-    def edit_chain(self):
-        pass
+    def rename_chain(self, family_type, table_name, chain_name, new_name):
+        os.system(f'bash {self.PATH_CONFIG}rename.sh {family_type} {table_name} {chain_name} {new_name}')
 
-    def list_chain(self):
-        pass
+    def list_chain(self, family_type, table_name, chain_name):
+        if family_type and table_name and chain_name:
+            os.system(f'bash {self.PATH_CONFIG}list.sh {family_type} {table_name} {chain_name}')
+        elif family_type:
+            os.system(f'bash {self.PATH_CONFIG}list.sh {family_type}')
 
-    def flush_chain(self):
-        pass
+    def flush_chain(self, family_type, table_name, chain_name):
+        os.system(f'bash {self.PATH_CONFIG}flush.sh {family_type} {table_name} {chain_name}')
     
+if __name__=='__main__':
+    chain = Chain()
+    chain.add_chain('ip', 'my_tables', 'my_chain', 'filter', 'output', '3', 'drop')
+    # chain.delete_chain('ip', 'my_tables', 'my_chains')
+    # chain.rename_chain('ip', 'my_tables', 'my_chain', 'me')
+    # chain.flush_chain('ip', 'my_tables', 'my_chain')
+    chain.list_chain('ip', '', '')

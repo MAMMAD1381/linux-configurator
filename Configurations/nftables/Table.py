@@ -34,9 +34,10 @@ class Table:
 
 if __name__=='__main__':
     table_handler = Table()
-    # table_handler.add_table('my_tables', 'ip')
+    table_handler.add_table('ip', 'my_tables')
     # table_handler.delete_table('my_tables', 'ip')
-    table_handler.flush_table('my_tables', 'ip')
+    # table_handler.flush_table('my_tables', 'ip')
+    table_handler.list_table('', '')
 
 
 
