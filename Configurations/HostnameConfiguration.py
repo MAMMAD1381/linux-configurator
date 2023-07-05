@@ -2,7 +2,7 @@ import os
 
 class HostnameConfiguratoin:
 
-    PATH_CONFIG = '../scripts/Hostname/'
+    PATH_CONFIG = '/home/mohammad/Documents/Git-hub/linux-configurator/scripts/Hostname/'
 
     def __init__(self):
         

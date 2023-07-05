@@ -2,7 +2,7 @@ import os
 
 class IPconfiguratoin:
 
-    PATH_CONFIG = '../scripts/IP/'
+    PATH_CONFIG = '/home/mohammad/Documents/Git-hub/linux-configurator/scripts/IP/'
 
     def __init__(self):
 

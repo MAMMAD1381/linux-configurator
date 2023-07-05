@@ -3,7 +3,7 @@ import sys
 
 class DNSconfiguratoin:
 
-    PATH_CONFIG = '../scripts/DNS/'
+    PATH_CONFIG = '/home/mohammad/Documents/Git-hub/linux-configurator/scripts/DNS/'
 
 
     def __init__(self):
@@ -61,12 +61,12 @@ class DNSconfiguratoin:
     def setDNS_temporary(self, dns1, dns2):
         self._backup('temporary')
         self.removeDNS_temporary()
-        os.system(f'bash {self.PATH_CONFIG}temporary/set.sh {self.dns1} {self.dns2}')
+        os.system(f'bash {self.PATH_CONFIG}temporary/set.sh {dns1} {dns2}')
 
     def setDNS_permanently(self, dns1, dns2):
         self._backup('permanently')
         self.removeDNS_permanently()
-        os.system(f'bash {self.PATH_CONFIG}permanently/set.sh {self.dns1} {self.dns2}')
+        os.system(f'bash {self.PATH_CONFIG}permanently/set.sh {dns1} {dns2}')
 
     def removeDNS_temporary(self):
         os.system(f'bash {self.PATH_CONFIG}temporary/remove.sh')
